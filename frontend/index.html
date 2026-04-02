@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InfraView Dashboard</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <header class="top-cards">
+      <div class="mini-card">
+        <h3>Total de Atrasos</h3>
+        <p id="total-atrasos">--</p>
+        <div class="mini-line"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Total de Obras</h3>
+        <p id="total-obras">--</p>
+        <div class="mini-line"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Custo Total</h3>
+        <p id="custo-total">--</p>
+        <div class="mini-line"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Fornecedores</h3>
+        <p id="total-fornecedores">--</p>
+        <div class="mini-line"></div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="panel large-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Custo por Obra</h2>
+            <span>Visão consolidada</span>
+          </div>
+        </div>
+        <canvas id="chartCustos"></canvas>
+      </section>
+
+      <section class="panel large-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Status das Entregas</h2>
+            <span>Visão operacional</span>
+          </div>
+        </div>
+        <canvas id="chartStatus"></canvas>
+      </section>
+
+      <section class="panel small-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Atrasos por Fornecedor</h2>
+            <span>Fornecedores com mais ocorrências</span>
+          </div>
+        </div>
+        <canvas id="chartAtrasos"></canvas>
+      </section>
+
+      <section class="panel small-panel table-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Resumo Operacional</h2>
+            <span>Indicadores principais</span>
+          </div>
+        </div>
+
+        <div class="summary-list">
+          <div class="summary-row">
+            <span>Entregas atrasadas</span>
+            <strong id="resumo-atrasadas">--</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Entregas no prazo</span>
+            <strong id="resumo-prazo">--</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Obras monitoradas</span>
+            <strong id="resumo-obras">--</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Fornecedores ativos</span>
+            <strong id="resumo-fornecedores">--</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./src/js/dashboard.js"></script>
+</body>
+</html>

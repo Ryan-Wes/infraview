@@ -1,0 +1,13 @@
+id_obra,nome_obra,tipo_estrutura,fornecedor,material,categoria_material,data_prevista,data_entrega,status_entrega,quantidade,custo_total,pendencia,prioridade_pendencia,status_pendencia
+1,LT Sul 01,Linha de Transmissao,EletroCabos,Cabo condutor,Condutores,2026-03-01,2026-03-03,Atrasada,120,18500,Entrega fora do prazo,Alta,Aberta
+2,SE Norte 02,Subestacao,Alta Tensao SA,Disjuntor,Equipamentos,2026-03-02,2026-03-02,No Prazo,4,32000,Sem pendencia,Baixa,Fechada
+3,LT Sul 01,Linha de Transmissao,MetalGrid,Torre metalica,Estruturas,2026-03-05,2026-03-09,Atrasada,12,54000,Avaria em componente,Alta,Aberta
+4,SE Leste 01,Subestacao,PowerX,Transformador,Equipamentos,2026-03-04,2026-03-04,No Prazo,1,125000,Sem pendencia,Baixa,Fechada
+5,LT Norte 03,Linha de Transmissao,EletroCabos,Isolador,Isolamento,2026-03-06,2026-03-08,Atrasada,60,9600,Falta de identificacao,Media,Aberta
+6,SE Norte 02,Subestacao,Conecta Engenharia,Painel de controle,Automacao,2026-03-07,2026-03-07,No Prazo,2,18400,Sem pendencia,Baixa,Fechada
+7,LT Centro 01,Linha de Transmissao,MetalGrid,Cruzeta,Estruturas,2026-03-08,2026-03-11,Atrasada,25,13200,Material com dano fisico,Alta,Aberta
+8,SE Sul 01,Subestacao,Alta Tensao SA,Chave seccionadora,Equipamentos,2026-03-09,2026-03-09,No Prazo,3,27600,Sem pendencia,Baixa,Fechada
+9,LT Norte 03,Linha de Transmissao,PowerX,Para-raio,Protecao,2026-03-10,2026-03-12,Atrasada,15,11250,Documentacao incompleta,Media,Aberta
+10,SE Leste 01,Subestacao,Conecta Engenharia,Relé de proteção,Automacao,2026-03-11,2026-03-11,No Prazo,6,14800,Sem pendencia,Baixa,Fechada
+11,LT Centro 01,Linha de Transmissao,EletroCabos,Cabo OPGW,Condutores,2026-03-12,2026-03-15,Atrasada,18,22100,Entrega parcial,Alta,Aberta
+12,SE Sul 01,Subestacao,PowerX,TC,Protecao,2026-03-13,2026-03-13,No Prazo,8,19400,Sem pendencia,Baixa,Fechada
