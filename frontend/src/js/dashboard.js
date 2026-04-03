@@ -1,5 +1,10 @@
 const API_BASE_URL = "http://127.0.0.1:5000";
 
+let activeFilter = null;
+let atrasosChartInstance = null;
+let statusChartInstance = null;
+let custosChartInstance = null;
+
 async function fetchData(endpoint) {
     const response = await fetch(`${API_BASE_URL}${endpoint}`);
     return response.json();
@@ -23,7 +28,7 @@ function createAtrasosChart(data) {
     const textSoft = rootStyles.getPropertyValue("--text-soft").trim();
     const textMain = rootStyles.getPropertyValue("--text-main").trim();
 
-    new Chart(ctx, {
+    return new Chart(ctx, {
         type: "bar",
         data: {
             labels: data.map(item => item.fornecedor),
@@ -123,7 +128,7 @@ function createStatusChart(data) {
     const textSoft = rootStyles.getPropertyValue("--text-soft").trim();
     const textMain = rootStyles.getPropertyValue("--text-main").trim();
 
-    new Chart(ctx, {
+    return new Chart(ctx, {
         type: "doughnut",
         data: {
             labels: data.map(item => item.status_entrega),
@@ -159,7 +164,7 @@ function createCustosChart(data) {
     const textSoft = rootStyles.getPropertyValue("--text-soft").trim();
     const textMain = rootStyles.getPropertyValue("--text-main").trim();
 
-    new Chart(ctx, {
+    return new Chart(ctx, {
         type: "bar",
         data: {
             labels: data.map(item => item.nome_obra),
@@ -254,15 +259,45 @@ function animateValue(elementId, finalValue, duration = 1200, isCurrency = false
 }
 
 
+function destroyCharts() {
+    if (atrasosChartInstance) {
+        atrasosChartInstance.destroy();
+        atrasosChartInstance = null;
+    }
+
+    if (statusChartInstance) {
+        statusChartInstance.destroy();
+        statusChartInstance = null;
+    }
+
+    if (custosChartInstance) {
+        custosChartInstance.destroy();
+        custosChartInstance = null;
+    }
+}
+
+
 async function loadDashboard() {
     try {
+        destroyCharts();
+
         const atrasos = await fetchData("/kpi/atrasos");
         const custos = await fetchData("/kpi/custos");
         const status = await fetchData("/kpi/status");
 
-        createAtrasosChart(atrasos);
-        createStatusChart(status);
-        createCustosChart(custos);
+        let filteredStatus = status;
+
+        if (activeFilter === "atrasos") {
+            filteredStatus = status.filter(item => item.status_entrega === "Atrasada");
+        }
+
+        if (activeFilter === "status") {
+            filteredStatus = status;
+        }
+
+        atrasosChartInstance = createAtrasosChart(atrasos);
+        statusChartInstance = createStatusChart(filteredStatus);
+        custosChartInstance = createCustosChart(custos);
 
         const totalAtrasos = atrasos.reduce((acc, item) => acc + item.total_atrasos, 0);
         const totalObras = custos.length;
@@ -286,6 +321,13 @@ async function loadDashboard() {
     }
 }
 
+async function updateDashboard(filter = null) {
+    activeFilter = filter;
+
+    // por enquanto só recarrega tudo
+    await loadDashboard();
+}
+
 document.querySelectorAll(".panel").forEach(panel => {
     panel.addEventListener("mousemove", e => {
         const rect = panel.getBoundingClientRect();
@@ -294,6 +336,22 @@ document.querySelectorAll(".panel").forEach(panel => {
 
         panel.style.setProperty("--mouse-x", `${x}px`);
         panel.style.setProperty("--mouse-y", `${y}px`);
+    });
+});
+
+document.querySelectorAll(".mini-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const filter = card.dataset.filter;
+
+        document.querySelectorAll(".mini-card").forEach(item => {
+            item.classList.remove("active");
+        });
+
+        card.classList.add("active");
+
+        console.log("Filtro clicado:", filter);
+
+        updateDashboard(filter);
     });
 });
 

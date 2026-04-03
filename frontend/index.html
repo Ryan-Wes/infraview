@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InfraView Dashboard</title>
   <link rel="stylesheet" href="./src/css/style.css">
 </head>
+
 <body>
   <div class="dashboard">
     <header class="top-cards">
-      <div class="mini-card">
+      <div class="mini-card" data-filter="atrasos">
         <h3>Total de Atrasos</h3>
         <p id="total-atrasos">--</p>
         <div class="mini-line"></div>
       </div>
 
-      <div class="mini-card">
+      <div class="mini-card" data-filter="obras">
         <h3>Total de Obras</h3>
         <p id="total-obras">--</p>
         <div class="mini-line"></div>
       </div>
 
-      <div class="mini-card">
+      <div class="mini-card" data-filter="custos">
         <h3>Custo Total</h3>
         <p id="custo-total">--</p>
         <div class="mini-line"></div>
       </div>
 
-      <div class="mini-card">
+      <div class="mini-card" data-filter="fornecedores">
         <h3>Fornecedores</h3>
         <p id="total-fornecedores">--</p>
         <div class="mini-line"></div>
@@ -101,4 +103,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./src/js/dashboard.js"></script>
 </body>
+
 </html>
